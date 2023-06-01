@@ -37,19 +37,19 @@ def AiEachOther():
 def GetDialogue():
     field = choice(topics)
     gtext = f"""Give me a topic for a dialogue in the field of "{field}". The topic has to be surrounded by the character ^."""
-    print(gtext)
     rsp = get_completion(gtext, "user")
-    print(rsp)
     rsp = re.findall(reg, rsp.replace('^:', ''))[0]
-    return {'ai_qa': rsp, 'llm': choice(['chatgpt', 'bard']) }
+    return {'ai_qa': rsp, 'llm': choice(['chatgpt', 'bard']), 'topic': field }
 
 @app.route('/get_q', methods=['POST'])
 def GetQuestion():
     text = request.form.get('text')
     llm = request.form.get('llm')
+    topic = request.form.get('topic')
     txtf = f"""
     Formulate a question base on the following text that are surrounded by the character ^ \
     ^{text}^ \
+    Have in mind that you are discussing something about "{topic}" \
     Do not output other thing than the question, don't be polite. \
     Just output the question. \
     Your question has to be surrounded by the character ^ \
@@ -60,21 +60,22 @@ def GetQuestion():
         rsp = get_completion(txtf, "user")
     if llm == 'bard':
         rsp = bard.get_answer(txtf)['content']
-    print(llm)
-    print(rsp)
     rsp = re.findall(reg, rsp.replace('^:', ''))[0].strip('```')
     return {'ai_qa': rsp, 'llm': llm }
 
 @app.route('/get_answer', methods=['POST'])
 def GetAnswer():
     text = request.form.get('text')
+    topic = request.form.get('topic')
+    llm = request.form.get('llm')
     text = f"""Answer the question surrounded by the character ^. \
                Your answer should have 150 characters or less ^{text}^.\
+               Have in mind that you are discussing something about "{topic}" \
                Your given answer has to be surrounded by the character ^.\
                Do not eloborate at all just give me the answer.
             """
     
-    llm = request.form.get('llm')
+    
     llm_t = {
         'chatgpt': 'bard',
         'bard': 'chatgpt',
@@ -85,12 +86,10 @@ def GetAnswer():
         rsp = get_completion(text, "user")
     if llmc == 'bard':
         rsp = bard.get_answer(text)['content']
-    print(llmc)
-    print(rsp)
     rt = re.findall(reg, rsp.replace('^:', ''))
     if rt: 
         rsp = rt[0].strip('```')
-    return {'ai_qa': rsp, 'llm': llm, 'llmc': llmc }
+    return {'ai_qa': rsp, 'llm': llm, 'llmc': llmc, 'topic': topic }
     
 if __name__ == '__main__':
     app.run()

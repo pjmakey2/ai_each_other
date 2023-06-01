@@ -10,6 +10,13 @@ https://github.com/pjmakey2/ai_each_other/assets/1290539/d873a5b8-0fcf-48ba-b10a
 
 https://github.com/pjmakey2/ai_each_other/assets/1290539/36da2b78-38ed-496c-a3b5-99110637b717
 
+### Considerations.
+
+  What you see in the videos is made up with a openai API KEY pay account.
+  In free openai API KEY account, there is a limit to consider for making requests per time.
+  If you run this project against a free API KEY account you made have experience cuts 
+  in the request you made to the API
+
 ### Projects involve in this repository.
 
  * https://github.com/dsdanielpark/Bard-API
@@ -20,6 +27,8 @@ https://github.com/pjmakey2/ai_each_other/assets/1290539/36da2b78-38ed-496c-a3b5
  * [Flask](https://flask.palletsprojects.com/en/2.3.x/){:target="_blank"}
  * [openai](https://pypi.org/project/openai/){:target="_blank"}
  * [tailwindcss](https://tailwindcss.com/){:target="_blank"}
+
+
 
 ### Tech specs
 

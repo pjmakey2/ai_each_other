@@ -113,6 +113,7 @@
             fdata.append('text', data.ai_qa);
             //fdata.append('llm', 'chatgpt');
             fdata.append('llm', data.llm);
+            fdata.append('topic', data.topic);
             fetch(url, {
                 method: 'POST',
                 body: fdata
@@ -129,7 +130,7 @@
                 })
                 .then((data) => {
                     setTimeout(() => {
-                        send_a(data.llm, data.ai_qa)
+                        send_a(data.llm, data.ai_qa, data.topic)
                     }, 5000)
                 });
         }
@@ -148,13 +149,14 @@
             document.querySelector(`#${llm}_panel`).innerHTML += rr
         }
 
-        send_a = (llm, q) => {
+        send_a = (llm, q, topic) => {
             const url = "{{ url_for('GetAnswer') }}";
             // Make the Fetch POST request
             const fdata = new FormData();
             fdata.append('text', q);
             //fdata.append('llm', 'chatgpt');
             fdata.append('llm', llm);
+            fdata.append('topic', topic);
             fetch(url, {
                 method: 'POST',
                 body: fdata
