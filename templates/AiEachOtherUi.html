@@ -103,7 +103,7 @@
                 alert('Your topic is invalid')
             }
             llm = mrandom(['chatgpt', 'bard']);
-            get_q({ 'ai_qa': vv, llm: llm });
+            get_q({ 'ai_qa': vv, llm: llm, 'topic': vv });
         }
 
         get_q = (data) => {
