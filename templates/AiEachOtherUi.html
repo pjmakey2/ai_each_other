@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>AI EACH OTHER</title>
+    <style>
+        .separator {
+            border-left: 1px solid #CBD5E0;
+        }
+    </style>
+</head>
+
+<body class="flex h-full flex-col">
+    <main>
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-5 pt-20 text-center lg:pt-14">
+            <span
+                class="mx-auto max-w-4xl font-display text-2xl font-medium tracking-tight text-slate-900 sm:text-3xl">Make
+                ChatGpt and Bard talk each other</span>
+        </div>
+        <div class="flex items-center justify-center h-10 pb-5">
+            <div class="inline-flex rounded-md shadow-sm" role="group">
+                <button onclick="get_topic(this)"
+                    class="block w-40 rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mr-2">
+                    Start Automatic
+                </button>
+                <input type="text" id="your_topic"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-50 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2"
+                    placeholder="Or especify a topic" required>
+                <button onclick="set_topic(this)"
+                    class="block w-40 rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mr-2">
+                    Start your topic
+                </button>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 place-content-center justify-items-center text-center">
+            <div id="title_dialogue"
+                class="bg-mx-auto max-w-4xl font-display text-1xl font-medium tracking-tight text-slate-900 sm:text-3xl">
+            </div>
+            <div id="dialogue"
+                class="bg-mx-auto underline bg-lime-50 max-w-4xl font-display text-2xl font-medium tracking-tight text-slate-900 sm:text-3xl">
+            </div>
+        </div>
+        <div class="isolate px-40  bg-sky-200	 lg:px-40">
+            <div class="flex h-400">
+                <div class="w-1/2 p-4">
+                    <h2 class="text-center font-semibold text-2xl">ChatGpt</h2>
+                    <ul id="chatgpt_panel" class="gap-2"></ul>
+                </div>
+                <div class="w-1/2 p-4 separator ">
+                    <h2 class="text-center font-semibold text-2xl">Bard</h2>
+                    <ul id="bard_panel" class="gap-2"></ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript">
+        mrandom = (array) => {
+            return array[Math.floor(Math.random() * array.length)];
+        }
+        get_topic = (ele) => {
+            diaele = document.querySelector('#dialogue');
+            diaele.innerHTML = '';
+            ele.setAttribute('disabled', true);
+            ele.classList.remove('bg-indigo-600');
+            ele.classList.add('bg-sky-50');
+            ele.innerHTML = '...'
+            const url = "{{ url_for('GetDialogue') }}";
+            // Make the Fetch POST request
+            fetch(url, {
+                method: 'POST',
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response from the server
+                    topic = data.ai_qa;
+                    document.querySelector('#title_dialogue').innerHTML = "This AI's would talk about:"
+                    diaele.innerHTML = topic;
+                    return data
+                })
+                .catch(error => {
+                    // Handle any errors that occurred during the request
+                    //console.error('Error:', error);
+                    diaele.innerHTML = `Oh no, there is an error '${error}'`;
+                })
+                .then((data) => {
+                    ele.removeAttribute('disabled');
+                    ele.innerHTML = 'Start';
+                    ele.classList.remove('bg-sky-50');
+                    ele.classList.add('bg-indigo-600');
+                    get_q(data)
+                });
+        }
+
+        set_topic = (ele) => {
+            vv = document.querySelector('#your_topic').value;
+            if (vv.trim === '') {
+                alert('Your topic is invalid')
+            }
+            llm = mrandom(['chatgpt', 'bard']);
+            get_q({ 'ai_qa': vv, llm: llm });
+        }
+
+        get_q = (data) => {
+            const url = "{{ url_for('GetQuestion') }}";
+            // Make the Fetch POST request
+            const fdata = new FormData();
+            fdata.append('text', data.ai_qa);
+            //fdata.append('llm', 'chatgpt');
+            fdata.append('llm', data.llm);
+            fetch(url, {
+                method: 'POST',
+                body: fdata
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response from the server
+                    console.log('Response:', data);
+                    draw_p('Question', data.llm, data.ai_qa);
+                    return data
+                })
+                .catch(error => {
+                    diaele.innerHTML = `Oh no, there is an error '${error}'`;
+                })
+                .then((data) => {
+                    setTimeout(() => {
+                        send_a(data.llm, data.ai_qa)
+                    }, 20000)
+                });
+        }
+
+        draw_p = (type, llm, t) => {
+            rr = `<li class="mt-2">` +
+                `    <figure class="bg-slate-100 rounded-xl p-8 md:p-0 dark:bg-slate-800">` +
+                `        <span class="text-left font-semibold text-1xl">${type}:</span>` +
+                `            <blockquote class="h-48 overflow-auto">` +
+                `                <p class="text-lg font-medium">` +
+                `                  ${t}` +
+                `                </p>` +
+                `            </blockquote>` +
+                `    </figure>` +
+                `</li>`;
+            document.querySelector(`#${llm}_panel`).innerHTML += rr
+        }
+
+        send_a = (llm, q) => {
+            const url = "{{ url_for('GetAnswer') }}";
+            // Make the Fetch POST request
+            const fdata = new FormData();
+            fdata.append('text', q);
+            //fdata.append('llm', 'chatgpt');
+            fdata.append('llm', llm);
+            fetch(url, {
+                method: 'POST',
+                body: fdata
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response from the server
+                    draw_p('Answer', data.llmc, data.ai_qa);
+                    return data
+                })
+                .catch(error => {
+                    diaele.innerHTML = `Oh no, there is an error '${error}'`;
+                })
+                .then((data) => {
+                    get_q(data)
+                });
+        }
+    </script>
+</body>
+</html>

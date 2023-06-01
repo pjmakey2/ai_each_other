@@ -1,0 +1,31 @@
+Works on both.
+
+   Give a topic for a dialogue, put your answer inside tree backticks, don't eloborate over the topic
+
+
+Works on chatgpt
+
+    Formulate a question base on the following text that are inside tree backticks
+    ```
+    {text}
+    ```
+    Do not output other thing than the question, don't be polite.
+    Just output the question.
+    Put your question inside tree backticks.
+    I would prompt to you my answer, then following that answer we would start a dialogue.
+    Now give me your first question.
+
+Works on bard
+   
+    In order for the dialogue between these two, in bard with need to specify each time, that we need a question.
+
+    You are now who making questions, give any random question.
+    Do not output other thing than the question, don't be polite.
+    Just output the question.    
+    Put your question inside tree backticks.
+
+    Formulate a question base on the following text that are inside tree backticks
+    Put your question inside tree backticks
+    ```
+    The capital of France is Paris.
+    ```
