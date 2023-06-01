@@ -1,3 +1,4 @@
 settings.env
 packages.sh
 topics.txt
+__pycache__
