@@ -40,7 +40,7 @@ def GetDialogue():
     print(gtext)
     rsp = get_completion(gtext, "user")
     print(rsp)
-    rsp = re.findall(reg, rsp.replace('\n', ''))[0]
+    rsp = re.findall(reg, rsp.replace('^:', ''))[0]
     return {'ai_qa': rsp, 'llm': choice(['chatgpt', 'bard']) }
 
 @app.route('/get_q', methods=['POST'])
@@ -62,7 +62,7 @@ def GetQuestion():
         rsp = bard.get_answer(txtf)['content']
     print(llm)
     print(rsp)
-    rsp = re.findall(reg, rsp.replace('\n', ''))[0].strip('```')
+    rsp = re.findall(reg, rsp.replace('^:', ''))[0].strip('```')
     return {'ai_qa': rsp, 'llm': llm }
 
 @app.route('/get_answer', methods=['POST'])

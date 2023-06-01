@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
+,    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>AI EACH OTHER</title>
+    <title>AI EACH OTHER (Made it by https://github.com/pjmakey2)</title>
     <style>
         .separator {
             border-left: 1px solid #CBD5E0;
@@ -15,10 +14,10 @@
 
 <body class="flex h-full flex-col">
     <main>
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-5 pt-20 text-center lg:pt-14">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-5 pt-20 text-center lg:pt-2">
             <span
                 class="mx-auto max-w-4xl font-display text-2xl font-medium tracking-tight text-slate-900 sm:text-3xl">Make
-                ChatGpt and Bard talk each other</span>
+                ChatGpt and Bard talk to each other</span>
         </div>
         <div class="flex items-center justify-center h-10 pb-5">
             <div class="inline-flex rounded-md shadow-sm" role="group">
@@ -27,7 +26,7 @@
                     Start Automatic
                 </button>
                 <input type="text" id="your_topic"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-50 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2"
                     placeholder="Or especify a topic" required>
                 <button onclick="set_topic(this)"
                     class="block w-40 rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mr-2">
@@ -56,6 +55,10 @@
             </div>
         </div>
     </main>
+    <div class="text-xs text-gray-500 text-center mt-3">
+        Developed by 
+        <a href="https://github.com/pjmakey2" target="_blank" class="underline hover:text-gray-700">Pedro Leguizamon</a>
+    </div>    
     <script type="text/javascript">
         mrandom = (array) => {
             return array[Math.floor(Math.random() * array.length)];
@@ -76,7 +79,7 @@
                 .then(data => {
                     // Handle the response from the server
                     topic = data.ai_qa;
-                    document.querySelector('#title_dialogue').innerHTML = "This AI's would talk about:"
+                    document.querySelector('#title_dialogue').innerHTML = "These AIs would talk to each other about:"
                     diaele.innerHTML = topic;
                     return data
                 })
@@ -127,7 +130,7 @@
                 .then((data) => {
                     setTimeout(() => {
                         send_a(data.llm, data.ai_qa)
-                    }, 20000)
+                    }, 5000)
                 });
         }
 
