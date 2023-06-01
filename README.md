@@ -8,7 +8,7 @@ https://github.com/pjmakey2/ai_each_other/assets/1290539/d873a5b8-0fcf-48ba-b10a
 
 ### Or create an automatically generated topic.
 
-https://github.com/pjmakey2/ai_each_other/assets/1290539/36da2b78-38ed-496c-a3b5-99110637b717
+https://github.com/pjmakey2/ai_each_other/assets/1290539/7cf54fbe-e366-4eea-a3b4-3eae2b38e646
 
 ### Considerations.
 
