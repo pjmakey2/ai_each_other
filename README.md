@@ -58,4 +58,5 @@ https://github.com/pjmakey2/ai_each_other/assets/1290539/7cf54fbe-e366-4eea-a3b4
     Please note that the above specifications are general and can be further customized based on the specific requirements and scope of your web application.
 
 Author: https://github.com/pjmakey2
+
 Email:  pjmakey2@gmail.com
