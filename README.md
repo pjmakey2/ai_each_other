@@ -22,10 +22,10 @@ https://github.com/pjmakey2/ai_each_other/assets/1290539/7cf54fbe-e366-4eea-a3b4
 
 ### Tech stack
 
- * [Pydantic](https://github.com/dsdanielpark/Bard-API){:target="_blank"}
- * [Flask](https://flask.palletsprojects.com/en/2.3.x/){:target="_blank"}
- * [openai](https://pypi.org/project/openai/){:target="_blank"}
- * [tailwindcss](https://tailwindcss.com/){:target="_blank"}
+ * [Pydantic](https://github.com/dsdanielpark/Bard-API)
+ * [Flask](https://flask.palletsprojects.com/en/2.3.x/)
+ * [openai](https://pypi.org/project/openai/)
+ * [tailwindcss](https://tailwindcss.com/)
 
 
 
