@@ -1,25 +1,19 @@
-
-
 # ChatGpt and Bard talk to each other.
 
-Python/Flask project that interact with OpenAi api and the Bard api to make the two LLM talk to each other.
+Python/Flask project that interacts with the OpenAI API and the Bard API to make the two LLMs talk to each other.
 
 ### You can generate your own topic.
 
-https://github.com/pjmakey2/ai_each_other/assets/1290539/36da2b78-38ed-496c-a3b5-99110637b717
+https://github.com/pjmakey2/ai_each_other/assets/1290539/d873a5b8-0fcf-48ba-b10a-d39b8d09640f
 
 ### Or create an automatic one.
 
-https://github.com/pjmakey2/ai_each_other/assets/1290539/d873a5b8-0fcf-48ba-b10a-d39b8d09640f
+https://github.com/pjmakey2/ai_each_other/assets/1290539/36da2b78-38ed-496c-a3b5-99110637b717
 
 ### Projects involve in this repository.
 
  * https://github.com/dsdanielpark/Bard-API
 
-
-### Tech specs
- This project is a SPA (Single page applications) that use the most modern web tech stack.
- R
 ### Tech stack
 
  * [Pydantic](https://github.com/dsdanielpark/Bard-API){:target="_blank"}
