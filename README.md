@@ -12,10 +12,9 @@ https://github.com/pjmakey2/ai_each_other/assets/1290539/7cf54fbe-e366-4eea-a3b4
 
 ### Considerations.
 
-  What you see in the videos is made up with a openai API KEY pay account.
-  In free openai API KEY account, there is a limit to consider for making requests per time.
-  If you run this project against a free API KEY account you made have experience cuts 
-  in the request you made to the API
+  * What you see in the videos is generated using an OpenAI API KEY paid account.
+  * In a free OpenAI API KEY account, there is a limit to consider for making requests per time
+  * If you run this project against a free API KEY account, you may experience cuts in the requests you make to the API.
 
 ### Projects involve in this repository.
 
