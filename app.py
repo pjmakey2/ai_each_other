@@ -61,7 +61,7 @@ def GetQuestion():
     if llm == 'bard':
         rsp = bard.get_answer(txtf)['content']
     rsp = re.findall(reg, rsp.replace('^:', ''))[0].strip('```')
-    return {'ai_qa': rsp, 'llm': llm }
+    return {'ai_qa': rsp, 'llm': llm, 'topic': topic }
 
 @app.route('/get_answer', methods=['POST'])
 def GetAnswer():
